@@ -54,7 +54,7 @@ Criei funções como `dq_check_unique` e `dq_check_condition` para acompanhar a 
 
 Os resultados são registrados como `PASS` ou `FAIL` e podem ser persistidos, permitindo acompanhar as condições de qualidade do pipeline e criar uma camada de observabilidade.
 
-![Validações de Data Quality](./readme_images/data-quality.png)
+![Validações de Data Quality](./readme_images/dataquality.png)
 
 ## Otimização física Delta
 
