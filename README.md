@@ -1,3 +1,9 @@
+# Projeto CineData Analytics
+
+Este projeto apresenta um pipeline ETL desenvolvido em Databricks com PySpark, Spark SQL e Delta Lake, seguindo a Arquitetura Medallion e organizando os dados nas camadas Bronze, Silver e Gold.
+
+Durante o desenvolvimento, meu foco foi construir um pipeline capaz de lidar com problemas reais de qualidade dos dados, mantendo a rastreabilidade e o desempenho necessários para aplicações de Business Intelligence e Inteligência Artificial.
+
 # Resolução de casos de borda e anomalias
 
 Durante o desenvolvimento, encontrei algumas inconsistências na base de origem do TMDB que poderiam gerar resultados analíticos incorretos. Para cada caso, precisei investigar a origem do problema e criar tratamentos específicos sem comprometer a informação original.
