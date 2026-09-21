@@ -114,6 +114,14 @@ Nas tabelas tb_generos e tb_pessoas_empresas, o processo envolve a padronizaçã
 Para garantir a confiabilidade analítica e blindar a tabela de géneros contra lixo textual, numérico ou colunas deslocadas que vinham da origem, implementámos uma validação rigorosa comparando os valores contra uma lista oficial de géneros válidos do TMDB (GENEROS_VALIDOS), complementada com F.initcap() e F.trim().
 
 Além disso, preservamos caracteres essenciais que fazem parte dos nomes de pessoas e empresas, como apóstrofos e hífens, evitando corromper identidades reais (ex.: O'Connor).
+Tratamento de Limites e Valores Fora do Escopo (Range Validation)
+Para garantir que nenhuma métrica ou indicador de engajamento violasse as regras físicas e de negócio, implementámos validações estritas de intervalo (range checks) em conjunto com a limpeza de caracteres inesperados:
+
+Validação de Notas (TMDB e IMDb): Assegurámos que todas as notas médias de avaliação estivessem estritamente limitadas entre 0 e 10 (rating BETWEEN 0 AND 10). Quaisquer valores fora deste intervalo lógico (ou corrompidos por falhas de extração) foram mapeados defensivamente para NULL.
+
+Consistência de Contagens e Durações: Campos de contagem de votos e duração de filmes (runtime, vote_count, num_votes) foram filtrados para aceitar apenas valores inteiros maiores ou iguais a zero, eliminando registos negativos ou lixos alfanuméricos indesejados.
+
+Resiliência a Caracteres Inesperados: Em campos textuais e numéricos mistos, combinámos o uso de try_cast e limpeza de strings para que pontuações isoladas ou caracteres especiais espúrios não causassem falhas fatais de type mismatch durante o processamento distribuído.
 
 ## Manutenção e otimização
 
