@@ -1,4 +1,4 @@
-# Projeto CineData Analytics
+![Banner](./readme_images/banner_cineanalytics.png)
 
 Este projeto apresenta um pipeline ETL desenvolvido em Databricks com PySpark, Spark SQL e Delta Lake, seguindo a Arquitetura Medallion e organizando os dados nas camadas Bronze, Silver e Gold.
 
