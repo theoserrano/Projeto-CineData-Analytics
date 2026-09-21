@@ -10,11 +10,11 @@ Durante o desenvolvimento, encontrei algumas inconsistências na base de origem 
 
 ## Kevin Hart com 66 participações em 2 anos
 
-Durante a análise de engajamento dos atores, Kevin Hart aparecia com cerca de 66 filmes em apenas dois anos. A investigação mostrou que o mesmo filme podia aparecer na origem com IDs diferentes, fazendo com que os registros fossem multiplicados nas tabelas Bridge e Fato.
+Durante a análise de engajamento, Kevin Hart aparecia com cerca de 66 filmes em apenas dois anos. A investigação mostrou que o mesmo filme existia na origem com IDs diferentes. Para resolver, apliquei uma deduplicação baseada em match_key e ano_lancamento utilizando uma Window Function ordenada por ingestion_datetime. Isso eliminou os clones de IDs múltiplos e preservou as continuações sem destruir as franquias.
 
-Inicialmente, tentei remover dos títulos tudo o que aparecesse depois de dois pontos. Porém, isso poderia transformar continuações legítimas em um único registro. Por isso, optei por uma deduplicação baseada em `match_key` e `ano_lancamento`, utilizando uma Window Function ordenada por `ingestion_datetime`.
+Mesmo assim a contagem continuava inflacionada. Descobri que o TMDB possuía inconsistências de tradução e formatação para o mesmo filme, com variações como Die Hart 2 e Duro de Atuar 2. Apliquei um tratamento de exceções na camada Silver com Expressões Regulares para unificar essas variações num título padrão antes da geração da chave, reduzindo as participações de Kevin Hart para os seus 4 lançamentos reais.
 
-Assim, consigo eliminar clones gerados por múltiplos IDs e, ao mesmo tempo, preservar continuações, subtítulos e filmes diferentes da mesma franquia.
+Com a base finalmente limpa, enfrentei a armadilha de filmes do futuro registrados na origem com anos irreais de lançamento. Ajustei a consulta na Gold para ancorar o tempo apenas ao ano máximo de obras já lançadas. Com os dados estabilizados, Eric Roberts emergiu legitimamente como o ator mais prolífico dos últimos dois anos. Ele garantiu o topo do ranking com 5 participações validadas em Once Upon a Time in Hollyweird, Psycho Ex, The Outlaws, The Firing Squad e Intent Unknown.
 
 ## Problema de ano de lançamento em popularidade
 
@@ -217,7 +217,7 @@ Respostas às 6 perguntas de negócio, geradas pelo `Silver_to_Gold`. As consult
 | 9  | Black Panther               | 1.349.926.083,00 |  6.961.433.817,42 |
 | 10 | Star Wars: The Last Jedi    | 1.332.698.830,00 |  6.872.594.596,43 |
 
-**5. Ator com mais participações nos filmes lançados nos últimos 2 anos:** Kevin Hart, com **7** participações.
+**5. Ator com mais participações nos filmes lançados nos últimos 2 anos:** Eric Roberts, com **5** participações.
 
 **6. Produtora com maior lucro nos últimos 5 anos:** Universal Pictures, com **US$ 6.181.119.834,00** de lucro.
 
