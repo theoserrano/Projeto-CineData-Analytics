@@ -142,6 +142,64 @@ Nessa etapa, transformo os dados estruturados dos filmes em um contexto textual 
 
 Os atores podem ser agrupados em uma única informação e os campos ausentes recebem fallbacks adequados. Assim, um filme sem diretor registrado pode receber “diretor não especificado” sem comprometer o restante do contexto.
 
+## Desafio de Analytics
+
+Respostas às 6 perguntas de negócio, geradas pelo `Silver_to_Gold`. As consultas em si estão no notebook; aqui é um **snapshot de uma execução**. Os valores em R$ podem variar conforme a cotação utilizada na execução.
+
+**1. Receita total (R$) de todos os filmes:** R$ 864.695.614.124,59
+
+**2. Top 5 filmes por popularidade:**
+
+| # | Título            | Popularidade |
+| - | ----------------- | -----------: |
+| 1 | blue beetle       |     2994.357 |
+| 2 | Gran Turismo      |     2680.593 |
+| 3 | The Nun II        |     1692.778 |
+| 4 | Meg 2: The Trench |     1567.273 |
+| 5 | retribution       |     1547.220 |
+
+**3. Filmes por gênero:** 19 gêneros encontrados
+
+| Gênero          | Quantidade de filmes |
+| --------------- | -------------------: |
+| Drama           |               29.554 |
+| Documentary     |               18.324 |
+| Comedy          |               16.947 |
+| Thriller        |                9.165 |
+| Horror          |                8.848 |
+| Romance         |                6.893 |
+| Action          |                5.398 |
+| Crime           |                4.221 |
+| Animation       |                4.001 |
+| Science Fiction |                3.364 |
+| Family          |                3.319 |
+| Mystery         |                2.922 |
+| Fantasy         |                2.885 |
+| Music           |                2.531 |
+| Adventure       |                2.530 |
+| History         |                2.139 |
+| War             |                  846 |
+| Western         |                  373 |
+
+**4. Top 10 filmes por receita**
+
+| #  | Título                      |    Receita (US$) |      Receita (R$) |
+| -- | --------------------------- | ---------------: | ----------------: |
+| 1  | Avengers: Endgame           | 2.800.000.000,00 | 14.439.320.000,00 |
+| 2  | Avatar: The Way of Water    | 2.320.250.281,00 | 11.965.298.674,09 |
+| 3  | AVENGERS: INFINITY WAR      | 2.052.415.039,00 | 10.584.099.114,62 |
+| 4  | spider-man: no way home     | 1.921.847.111,00 |  9.910.773.366,72 |
+| 5  | The Lion King               | 1.663.075.401,00 |  8.576.313.535,42 |
+| 6  | Top Gun: Maverick           | 1.488.732.821,00 |  7.677.246.284,61 |
+| 7  | Barbie                      | 1.428.545.028,00 |  7.366.863.854,89 |
+| 8  | The Super Mario Bros. Movie | 1.355.725.263,00 |  6.991.339.608,76 |
+| 9  | Black Panther               | 1.349.926.083,00 |  6.961.433.817,42 |
+| 10 | Star Wars: The Last Jedi    | 1.332.698.830,00 |  6.872.594.596,43 |
+
+**5. Ator com mais participações nos filmes lançados nos últimos 2 anos:** Kevin Hart, com **7** participações.
+
+**6. Produtora com maior lucro nos últimos 5 anos:** Universal Pictures, com **US$ 6.181.119.834,00** de lucro.
+
 # Resultado final
 
 O CineData Analytics foi desenvolvido para ser mais do que um pipeline de transformação de dados. A estrutura foi pensada para lidar com problemas reais da origem, como duplicidades, Column Shift, valores inconsistentes e campos ausentes.
