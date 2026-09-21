@@ -1,0 +1,31 @@
+resources:
+  jobs:
+    CineData_Pipeline_Producao:
+      name: CineData_Pipeline_Producao
+      schedule:
+        quartz_cron_expression: 0 0 6 * * ?
+        timezone_id: America/Sao_Paulo
+        pause_status: UNPAUSED
+      tasks:
+        - task_key: Task_Bronze
+          notebook_task:
+            notebook_path: /Workspace/Users/theorbserrano@gmail.com/Projeto CineData
+              Analytics - Théo Serrano/Landing_to_Bronze
+            source: WORKSPACE
+        - task_key: Task_Silver
+          depends_on:
+            - task_key: Task_Bronze
+          notebook_task:
+            notebook_path: /Workspace/Users/theorbserrano@gmail.com/Projeto CineData
+              Analytics - Théo Serrano/Bronze_to_Silver
+            source: WORKSPACE
+        - task_key: Task_Gold
+          depends_on:
+            - task_key: Task_Silver
+          notebook_task:
+            notebook_path: /Workspace/Users/theorbserrano@gmail.com/Projeto CineData
+              Analytics - Théo Serrano/Silver_to_Gold
+            source: WORKSPACE
+      queue:
+        enabled: true
+      performance_target: PERFORMANCE_OPTIMIZED
