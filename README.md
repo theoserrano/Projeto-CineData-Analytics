@@ -8,7 +8,7 @@ Durante o desenvolvimento, meu foco foi construir um pipeline capaz de lidar com
 
 Durante o desenvolvimento, encontrei algumas inconsistências na base de origem do TMDB que poderiam gerar resultados analíticos incorretos. Para cada caso, precisei investigar a origem do problema e criar tratamentos específicos sem comprometer a informação original.
 
-## Kevin Hart com 66 participações em 2 anos
+## As improváveis 66 participações de Kevin Hart em 2 anos
 
 Durante a análise de engajamento, Kevin Hart aparecia com cerca de 66 filmes em apenas dois anos. A investigação mostrou que o mesmo filme existia na origem com IDs diferentes. Para resolver, apliquei uma deduplicação baseada em match_key e ano_lancamento utilizando uma Window Function ordenada por ingestion_datetime. Isso eliminou os clones de IDs múltiplos e preservou as continuações sem destruir as franquias.
 
