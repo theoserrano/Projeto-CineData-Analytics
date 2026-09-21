@@ -96,11 +96,12 @@ Para lidar com valores incompatíveis com os tipos esperados, utilizo `try_cast`
 
 Além disso, aplico a validação por expressão regular na coluna `popularity` para identificar anos que foram deslocados para essa coluna. Assim, trato tanto erros de formato quanto erros de contexto.
 
-## Normalização de gêneros e pessoas
+## Normalização e Validação de Gêneros
+Nas tabelas tb_generos e tb_pessoas_empresas, o processo envolve a padronização e divisão de strings utilizando split e explode.
 
-Nas tabelas `tb_generos` e `tb_pessoas_empresas`, utilizo `split`, `explode`, `trim` e `initcap` para normalizar os dados.
+Para garantir a confiabilidade analítica e blindar a tabela de géneros contra lixo textual, numérico ou colunas deslocadas que vinham da origem, implementámos uma validação rigorosa comparando os valores contra uma lista oficial de géneros válidos do TMDB (GENEROS_VALIDOS), complementada com F.initcap() e F.trim().
 
-Também preservo caracteres que fazem parte dos nomes, como apóstrofos e hífens, evitando alterar identidades como O'Connor e Jean-Pierre.
+Além disso, preservamos caracteres essenciais que fazem parte dos nomes de pessoas e empresas, como apóstrofos e hífens, evitando corromper identidades reais (ex.: O'Connor).
 
 ## Manutenção e otimização
 
