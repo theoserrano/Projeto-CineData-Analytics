@@ -225,6 +225,9 @@ Respostas às 6 perguntas de negócio, geradas pelo `Silver_to_Gold`. As consult
 
 **6. Produtora com maior lucro nos últimos 5 anos:** Universal Pictures, com **US$ 6.181.119.834,00** de lucro.
 
+# Orquestração e Otimização (Databricks Workflow)
+Para automatizar a rotina de dados em produção, implementámos um Databricks Workflow chamado CineData_Pipeline_Producao, estruturado em três tarefas sequenciais com dependências. A Task_Bronze executa a ingestão inicial, a Task_Silver depende da conclusão bem-sucedida da anterior para aplicar a limpeza, validações de Data Quality, tratamento de anomalias e deduplicação, e por fim a Task_Gold consome a camada intermédia para consolidar a modelagem dimensional em Star Schema. Para simular uma rotina real de produção, o job foi configurado com um agendamento automático diário via expressão Quartz Cron (0 0 6 * * ?) no fuso horário de Brasília, garantindo atualizações consistentes às 06:00 da manhã, com toda a orquestração versionada de forma reproduzível através de Infraestrutura como Código.
+
 # Resultado final
 
 O CineData Analytics foi desenvolvido para ser mais do que um pipeline de transformação de dados. A estrutura foi pensada para lidar com problemas reais da origem, como duplicidades, Column Shift, valores inconsistentes e campos ausentes.
