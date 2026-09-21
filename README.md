@@ -1,9 +1,3 @@
-# Projeto CineData Analytics
-
-Este projeto apresenta um pipeline ETL desenvolvido em Databricks com PySpark, Spark SQL e Delta Lake, seguindo a Arquitetura Medallion e organizando os dados nas camadas Bronze, Silver e Gold.
-
-Durante o desenvolvimento, meu foco foi construir um pipeline capaz de lidar com problemas reais de qualidade dos dados, mantendo a rastreabilidade e o desempenho necessários para aplicações de Business Intelligence e Inteligência Artificial.
-
 # Resolução de casos de borda e anomalias
 
 Durante o desenvolvimento, encontrei algumas inconsistências na base de origem do TMDB que poderiam gerar resultados analíticos incorretos. Para cada caso, precisei investigar a origem do problema e criar tratamentos específicos sem comprometer a informação original.
@@ -23,6 +17,16 @@ Durante a criação do ranking de popularidade, alguns filmes apareciam com valo
 O problema é que esses valores continuavam sendo números válidos. Um simples `.cast("DOUBLE")` não identificaria o erro. Para tratar isso, utilizei `try_cast` junto com uma validação por expressão regular que identifica valores no formato de anos.
 
 Dessa forma, consigo diferenciar valores realmente inválidos de valores que são válidos numericamente, mas estão incorretos no contexto da coluna.
+
+## Gêneros concatenados e valores fora do padrão
+
+Durante a análise dos gêneros, percebi que alguns filmes apareciam com apenas um gênero, mas o valor armazenado revelava que havia mais informações escondidas na mesma string. Um exemplo era algo como `Western | Drama | Action`, que estava sendo tratado como um único gênero.
+
+Também encontrei registros com caracteres estranhos, valores numéricos e outros conteúdos que não correspondiam a gêneros válidos. Isso fazia com que a contagem por gênero ficasse distorcida.
+
+Na Silver, resolvi isso separando as strings com `split` e `explode`, normalizando os valores com `trim` e `initcap` e, principalmente, validando cada resultado contra uma lista oficial de gêneros válidos do TMDB, definida em `GENEROS_VALIDOS`.
+
+Assim, em vez de contabilizar `Western | Drama | Action` como um único gênero, o pipeline consegue transformar o registro em três relacionamentos distintos. Também elimino valores que não representam gêneros válidos antes que eles cheguem à Gold e às análises finais.
 
 # Resumo dos diferenciais arquiteturais
 
