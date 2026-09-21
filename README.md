@@ -16,6 +16,8 @@ Mesmo assim a contagem continuava inflacionada. Descobri que o TMDB possuía inc
 
 Com a base finalmente limpa, enfrentei a armadilha de filmes do futuro registrados na origem com anos irreais de lançamento. Ajustei a consulta na Gold para ancorar o tempo apenas ao ano máximo de obras já lançadas. Com os dados estabilizados, Eric Roberts emergiu legitimamente como o ator mais prolífico dos últimos dois anos. Ele garantiu o topo do ranking com 5 participações validadas em Once Upon a Time in Hollyweird, Psycho Ex, The Outlaws, The Firing Squad e Intent Unknown.
 
+![EricRoberts](./readme_images/EricRoberts.png)
+
 ## Problema de ano de lançamento em popularidade
 
 Durante a criação do ranking de popularidade, alguns filmes apareciam com valores como `2020`, `2019` e `2018`. A investigação mostrou que esses valores eram anos de lançamento que haviam sido deslocados para a coluna `popularity` devido a um problema de Column Shift na origem.
@@ -218,6 +220,8 @@ Respostas às 6 perguntas de negócio, geradas pelo `Silver_to_Gold`. As consult
 | 10 | Star Wars: The Last Jedi    | 1.332.698.830,00 |  6.872.594.596,43 |
 
 **5. Ator com mais participações nos filmes lançados nos últimos 2 anos:** Eric Roberts, com **5** participações.
+
+![EricRoberts](./readme_images/EricRoberts.png)
 
 **6. Produtora com maior lucro nos últimos 5 anos:** Universal Pictures, com **US$ 6.181.119.834,00** de lucro.
 
