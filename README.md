@@ -54,6 +54,8 @@ Criei funções como `dq_check_unique` e `dq_check_condition` para acompanhar a 
 
 Os resultados são registrados como `PASS` ou `FAIL` e podem ser persistidos, permitindo acompanhar as condições de qualidade do pipeline e criar uma camada de observabilidade.
 
+![Validações de Data Quality](./readme_images/data-quality.png)
+
 ## Otimização física Delta
 
 Ao final da Silver, utilizo `OPTIMIZE` e `ZORDER BY` para melhorar a organização física das tabelas Delta.
